@@ -2,7 +2,7 @@ name: Multi Container App Deployment
 on: 
   push:
     branches: [ master ]
-  pull_requests:
+  pull_request:
     branches: [ master ]
 
 jobs:
@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build tests docker image
-        run: docker build -t mihalichzh/react-test -f ./client/Dockerfile.dev . 
+        run: docker build -t mihalichzh/react-test -f ./client/Dockerfile.dev .
