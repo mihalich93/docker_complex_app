@@ -10,6 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Build tests docker image
         run: docker build -t mihalichzh/react-test -f ./Dockerfile.dev .
         working-directory: ./client
+      
+      - name: Run image with tests
+        run: docker run mihalichzh/react-test npm test -- --coverage
+
+      - name: Build production versions of all images
+        run: |
+          docker build -t mihalichzh/multi-client ./client
+          docker build -t mihalichzh/multi-nginx ./nginx
+          docker build -t mihalichzh/multi-server ./server
+          docker build -t mihalichzh/multi-worker ./worker
+        working-directory: .
