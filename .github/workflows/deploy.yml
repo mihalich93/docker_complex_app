@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - working-directory: ./client
       - name: Build tests docker image
         run: docker build -t mihalichzh/react-test -f ./Dockerfile.dev .
+        working-directory: ./client
