@@ -12,11 +12,11 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build tests docker image
-        run: docker build -t mihalichzh/react-test -f ./Dockerfile.dev .
+        run: docker build -t mihalichzh/client-test -f ./Dockerfile.dev .
         working-directory: ./client
       
       - name: Run image with tests
-        run: docker run mihalichzh/react-test npm test -- --watchAll=false
+        run: docker run mihalichzh/client-test npm test -- --watchAll=false
 
       - name: Build production versions of all images
         run: |
@@ -25,3 +25,10 @@ jobs:
           docker build -t mihalichzh/multi-server ./server
           docker build -t mihalichzh/multi-worker ./worker
         working-directory: .
+      - name: Publish images to the Docker Hub
+        run: |
+          echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+          docker push mihalichzh/multi-client
+          docker push mihalichzh/multi-nginx
+          docker push mihalichzh/multi-server
+          docker push mihalichzh/multi-worker
