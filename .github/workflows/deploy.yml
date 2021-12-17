@@ -27,7 +27,7 @@ jobs:
         working-directory: .
       - name: Publish images to the Docker Hub
         run: |
-          echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
           docker push mihalichzh/multi-client
           docker push mihalichzh/multi-nginx
           docker push mihalichzh/multi-server
