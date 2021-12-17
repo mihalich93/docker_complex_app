@@ -1,0 +1,14 @@
+name: Multi Container App Deployment
+on: 
+  push:
+    branches: [ master ]
+  pull_requests:
+    branches: [ master ]
+
+jobs:
+  build_test:
+    runs_on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build tests docker image
+        run: docker build -t mihalichzh/react-test -f ./client/Dockerfile.dev . 
