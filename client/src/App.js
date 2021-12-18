@@ -17,7 +17,7 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Updated Image Version
+            Updated Image Version V2
           </a>
           <Link to="/">Home</Link>
           <Link to="/otherpage">Other Page</Link>
